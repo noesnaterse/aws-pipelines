@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { AwsPipelinesStack } from '../lib/aws-pipelines-stack';
+import {BillingStack} from "../lib/BillingStack";
 
 const app = new cdk.App();
 new AwsPipelinesStack(app, 'AwsPipelinesStack', {
@@ -15,7 +16,11 @@ new AwsPipelinesStack(app, 'AwsPipelinesStack', {
 
   /* Uncomment the next line if you know exactly what Account and Region you
    * want to deploy the stack to. */
-  // env: { account: '123456789012', region: 'us-east-1' },
+  env: { account: '449838002207', region: 'eu-central-1' },
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
+new BillingStack(app, 'BillingStack', {
+  budgetAmount: 5,
+  emailAddress: 'n.snaterse@gmail.com',
+})
